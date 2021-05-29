@@ -6,7 +6,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class DestinationScreen extends StatefulWidget {
   final Destination destination;
 
-  DestinationScreen({required this.destination});
+  // ignore: use_key_in_widget_constructors
+  const DestinationScreen({required this.destination});
 
   @override
   _DestinationScreenState createState() => _DestinationScreenState();
