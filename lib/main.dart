@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 import '/screens/home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MyApp());
+import 'firebase/navigate.dart';
+import 'firebase/sign_in_page.dart';
 
+// void main() => runApp(
+//
+//
+//       MyApp(),
+//     );
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  runApp(MyApp());
+}
+
+// ignore: use_key_in_widget_constructors
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -10,12 +25,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Travel UI',
       debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: Navigate.routes,
+
       theme: ThemeData(
         primaryColor: const Color(0xFF3EBACE),
-        accentColor: Color(0xFFD8ECF1),
-        scaffoldBackgroundColor: Color(0xFFF3F5F7),
+        // ignore: deprecated_member_use
+        accentColor: const Color(0xFFD8ECF1),
+        scaffoldBackgroundColor: const Color(0xFFF3F5F7),
       ),
-      home: HomeScreen(),
+
     );
   }
 }

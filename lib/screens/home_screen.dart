@@ -3,6 +3,7 @@ import '/widgets/destination_carousel.dart';
 import '/widgets/hotel_carousel.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 // ignore: use_key_in_widget_constructors
 class HomeScreen extends StatefulWidget {
@@ -11,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  User? user = FirebaseAuth.instance.currentUser;
   int _selectedIndex = 0;
   int _currentTab = 0;
   final List<IconData> _icons = [
@@ -33,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         decoration: BoxDecoration(
           color: _selectedIndex == index
               ? Theme.of(context).accentColor
-              : Color(0xFFE7EBEE),
+              : const Color(0xFFE7EBEE),
           borderRadius: BorderRadius.circular(30.0),
         ),
         child: Icon(
@@ -41,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
           size: 25.0,
           color: _selectedIndex == index
               ? Theme.of(context).primaryColor
-              : Color(0xFFB4C1C4),
+              : const Color(0xFFB4C1C4),
         ),
       ),
     );
@@ -52,9 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          padding: EdgeInsets.symmetric(vertical: 30.0),
+          padding: const EdgeInsets.symmetric(vertical: 30.0),
           children: <Widget>[
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(left: 20.0, right: 120.0),
               child: Text(
                 'What would you like to find?',
@@ -64,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: _icons
@@ -75,9 +77,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
                   .toList(),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             DestinationCarousel(),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             HotelCarousel(),
           ],
         ),
@@ -85,19 +87,24 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentTab,
         onTap: (int value) {
+          final routes = ["/home", "/home","/sign-out"];
           setState(() {
-            _currentTab = value; 
+            _currentTab = value;
+            print(_currentTab);
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil(routes[value], (route) => false);
           });
         },
         items: [
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.search,
               size: 30.0,
             ),
+            // ignore: prefer_const_literals_to_create_immutables
             title: SizedBox.shrink(),
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.local_pizza,
               size: 30.0,
@@ -107,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: CircleAvatar(
               radius: 15.0,
-              backgroundImage: NetworkImage('http://i.imgur.com/zL4Krbz.jpg'),
+              backgroundImage: NetworkImage(user!.photoURL!),
             ),
             title: SizedBox.shrink(),
           )
