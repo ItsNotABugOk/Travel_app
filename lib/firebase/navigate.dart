@@ -11,6 +11,6 @@ class Navigate {
     '/' : (context) => SignInPage(),
     '/sign-in' : (context) => SignInPage(),
     '/home'  : (context) => HomeScreen(),
-    '/sign-out'  : (context) => SignOut()
+    '/sign-out'  : (context) => const SignOut()
   };
 }

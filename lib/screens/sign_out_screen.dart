@@ -14,6 +14,7 @@ class _SignOutState extends State<SignOut> {
   User? user = FirebaseAuth.instance.currentUser;
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
   }
 
@@ -30,27 +31,26 @@ class _SignOutState extends State<SignOut> {
               onPressed: () async {
                 FirebaseService service = FirebaseService();
                 await service.signOutFromGoogle();
-                Navigator.pushReplacementNamed(
-                    context, '/sign-in');
+                Navigator.pushReplacementNamed(context, '/');
               },
             )
           ],
           backwardsCompatibility: false,
-          systemOverlayStyle: const SystemUiOverlayStyle(statusBarColor: Colors.blue),
+          systemOverlayStyle:
+              const SystemUiOverlayStyle(statusBarColor: Colors.blue),
           title: const Text("Profile"),
         ),
         body: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(user!.email!),
-                Text(user!.displayName!),
-                CircleAvatar(
-                  backgroundImage: NetworkImage(user!.photoURL!),
-                  radius: 20,
-                )
-              ],
-            )));
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(user!.email!),
+            Text(user!.displayName!),
+            CircleAvatar(
+              backgroundImage: NetworkImage(user!.photoURL!),
+              radius: 20,
+            )
+          ],
+        )));
   }
 }
-

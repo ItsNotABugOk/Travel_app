@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:travel_app/screens/home_screen.dart';
 
 import 'firebase_service.dart';
 
@@ -146,39 +145,40 @@ class _GoogleSignInState extends State<GoogleSignIn> {
     Size size = MediaQuery.of(context).size;
     return !isLoading
         ? SizedBox(
-            width: size.width * 0.8,
-            child: OutlinedButton.icon(
-              icon: const FaIcon(FontAwesomeIcons.google,color: Colors.deepOrangeAccent,),
-              onPressed: () async {
-                setState(() {
-                  isLoading = true;
-                });
-                FirebaseService service = FirebaseService();
-                try {
-                  await service.signInWithGoogle();
-                  Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      width: size.width * 0.8,
+      child: OutlinedButton.icon(
+        icon: const FaIcon(FontAwesomeIcons.google,color: Colors.deepOrangeAccent,),
+        onPressed: () async {
+          setState(() {
+            isLoading = true;
+          });
+          FirebaseService service = FirebaseService();
+          try {
+
+            await service.signInWithGoogle();
+            Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
 
 
-                } catch (e) {
-                  if (e is FirebaseAuthException) {
-                    showMessage(e.message!);
-                  }
-                }
-                setState(() {
-                  isLoading = false;
-                });
-              },
-              label: const Text(
-                'SignIn With Google',
-                style:
-                    TextStyle(color:  Colors.deepOrangeAccent, fontWeight: FontWeight.bold),
-              ),
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                  side: MaterialStateProperty.all<BorderSide>(BorderSide.none)),
-            ),
-          )
+          } catch (e) {
+            if (e is FirebaseAuthException) {
+              showMessage(e.message!);
+            }
+          }
+          setState(() {
+            isLoading = false;
+          });
+        },
+        label: const Text(
+          'SignIn With Google',
+          style:
+          TextStyle(color:  Colors.deepOrangeAccent, fontWeight: FontWeight.bold),
+        ),
+        style: ButtonStyle(
+            backgroundColor:
+            MaterialStateProperty.all<Color>(Colors.white),
+            side: MaterialStateProperty.all<BorderSide>(BorderSide.none)),
+      ),
+    )
         : const CircularProgressIndicator();
   }
 
