@@ -24,6 +24,7 @@ class DestinationCarousel extends StatelessWidget {
                 ),
               ),
               GestureDetector(
+                // ignore: avoid_print
                 onTap: () => print('See All'),
                 child: Text(
                   'See All',
@@ -38,6 +39,7 @@ class DestinationCarousel extends StatelessWidget {
             ],
           ),
         ),
+        // ignore: sized_box_for_whitespace
         Container(
           height: 300.0,
           child: ListView.builder(
@@ -55,7 +57,7 @@ class DestinationCarousel extends StatelessWidget {
                   ),
                 ),
                 child: Container(
-                  margin: EdgeInsets.all(10.0),
+                  margin: const EdgeInsets.all(10.0),
                   width: 210.0,
                   child: Stack(
                     alignment: Alignment.topCenter,
@@ -70,14 +72,14 @@ class DestinationCarousel extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(10.0),
+                            padding: const EdgeInsets.all(10.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
                                   '${destination.activities.length} activities',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 22.0,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1.2,
@@ -85,7 +87,7 @@ class DestinationCarousel extends StatelessWidget {
                                 ),
                                 Text(
                                   destination.description,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.grey,
                                   ),
                                 ),

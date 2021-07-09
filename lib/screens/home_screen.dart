@@ -35,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         width: 60.0,
         decoration: BoxDecoration(
           color: _selectedIndex == index
+              // ignore: deprecated_member_use
               ? Theme.of(context).accentColor
               : const Color(0xFFE7EBEE),
           borderRadius: BorderRadius.circular(30.0),
@@ -91,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
           final routes = ["/home", "/home","/sign-out"];
           setState(() {
             _currentTab = value;
-            print(_currentTab);
+            // print(_currentTab);
             Navigator.of(context)
                 .pushNamedAndRemoveUntil(routes[value], (route) => false);
           });
@@ -117,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
               radius: 15.0,
               backgroundImage: NetworkImage(user!.photoURL!),
             ),
-            title: SizedBox.shrink(),
+            title: const SizedBox.shrink(),
           )
         ],
       ),

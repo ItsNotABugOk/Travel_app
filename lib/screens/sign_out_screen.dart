@@ -36,8 +36,6 @@ class _SignOutState extends State<SignOut> {
             )
           ],
           backwardsCompatibility: false,
-          systemOverlayStyle:
-              const SystemUiOverlayStyle(statusBarColor: Colors.blue),
           title: const Text("Profile"),
         ),
         body: Center(

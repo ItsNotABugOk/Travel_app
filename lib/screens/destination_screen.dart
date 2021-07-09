@@ -201,6 +201,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                   padding: const EdgeInsets.all(5.0),
                                   width: 70.0,
                                   decoration: BoxDecoration(
+                                    // ignore: deprecated_member_use
                                     color: Theme.of(context).accentColor,
                                     borderRadius: BorderRadius.circular(10.0),
                                   ),
@@ -214,6 +215,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                   padding: const EdgeInsets.all(5.0),
                                   width: 70.0,
                                   decoration: BoxDecoration(
+                                    // ignore: deprecated_member_use
                                     color: Theme.of(context).accentColor,
                                     borderRadius: BorderRadius.circular(10.0),
                                   ),

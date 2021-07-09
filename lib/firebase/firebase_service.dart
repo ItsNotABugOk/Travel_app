@@ -18,9 +18,9 @@ class FirebaseService {
         idToken: googleSignInAuthentication.idToken,
       );
       await _auth.signInWithCredential(credential);
-    } on FirebaseAuthException catch (e) {
-      print(e.message);
-      throw e;
+    } on FirebaseAuthException {
+
+      rethrow;
     }
   }
   Future<void> signOutFromGoogle() async{

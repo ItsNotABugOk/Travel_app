@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'firebase_service.dart';
@@ -14,99 +16,119 @@ class SignInPage extends StatelessWidget {
         borderSide: BorderSide(color: Color(0xFFEFEFEF), width: 3.0));
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Theme.of(context).primaryColor,
-      body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Image.asset("assets/images/appLogo.png"),
-          RichText(
-              textAlign: TextAlign.center,
-              text: const TextSpan(children: <TextSpan>[
-                TextSpan(
-                    text: 'Sign In',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20.0,
-                    )),
-              ])),
-          SizedBox(height: size.height * 0.01),
-          const Text(
-            'Sign In takes \n only 1 minute',
-            style: TextStyle(color: Colors.grey),
+      body: Container(
+        // height: size.height,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/mountainMan.jpg"),
+            fit: BoxFit.cover,
           ),
-          const GoogleSignIn(),
-          buildRowDivider(size: size),
-          Padding(padding: EdgeInsets.only(bottom: size.height * 0.02)),
-          SizedBox(
-            width: size.width * 0.8,
-            child: TextField(
-                decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(
-                        vertical: 15.0, horizontal: 10.0),
-                    enabledBorder: border,
-                    focusedBorder: border)),
-          ),
-          SizedBox(
-            height: size.height * 0.01,
-          ),
-          SizedBox(
-            width: size.width * 0.8,
-            child: TextField(
-              decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(
-                    vertical: 15.0, horizontal: 10.0),
-                enabledBorder: border,
-                focusedBorder: border,
-                suffixIcon: const Padding(
-                  child: FaIcon(
-                    FontAwesomeIcons.eye,
-                    size: 15,
+        ),
+        child: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // ignore: sized_box_for_whitespace
+                Container(
+                    height: size.height * 0.35,
+                    child: Image.asset("assets/images/appLogo.png")),
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: const TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'Sign In',
+                        style: TextStyle(
+                          color: Color(0x85111111),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ],
                   ),
-                  padding: EdgeInsets.only(top: 15, left: 15),
                 ),
-              ),
-            ),
-          ),
-          Padding(padding: EdgeInsets.only(bottom: size.height * 0.05)),
-          SizedBox(
-            width: size.width * 0.8,
-            child: OutlinedButton(
-              onPressed: () async {},
-              child: const Text('textSignIn'),
-              style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(
-                      Theme.of(context).primaryColor),
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      Theme.of(context).primaryColor),
-                  side: MaterialStateProperty.all<BorderSide>(BorderSide.none)),
-            ),
-          ),
-          RichText(
-              textAlign: TextAlign.center,
-              text: const TextSpan(children: <TextSpan>[
-                TextSpan(
-                    text: 'Create An Account?',
-                    style: TextStyle(
-                      color: Colors.grey,
-                    )),
-                TextSpan(
-                    text: ' Sign Up',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blue,
-                    )),
-              ])),
-          // IconButton(
-          //   icon: const Icon(
-          //     Icons.logout,
-          //     color: Colors.white,
-          //   ),
-          //   onPressed: () async {
-          //     FirebaseService service = FirebaseService();
-          //     await service.signOutFromGoogle();
-          //   },
-          // )
-        ]),
+                SizedBox(height: size.height * 0.01),
+                const Text(
+                  'Sign In takes only 1 minute',
+                  style: TextStyle(color: Color(0xFFFFFFFF)),
+                ),
+                const GoogleSignIn(),
+                buildRowDivider(size: size),
+                Padding(padding: EdgeInsets.only(bottom: size.height * 0.02)),
+                SizedBox(
+                  width: size.width * 0.8,
+                  child: TextField(
+                    decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 15.0, horizontal: 10.0),
+                        enabledBorder: border,
+                        focusedBorder: border,
+                        labelText: ' Username',
+                        labelStyle: const TextStyle(color: Colors.white),
+                        suffixIcon: const Padding(
+                          child: FaIcon(
+                            FontAwesomeIcons.user,
+                            color: Colors.white,
+                            size: 15,
+                          ),
+                          padding: EdgeInsets.only(top: 15, left: 15),
+                        )),
+                  ),
+                ),
+                SizedBox(
+                  height: size.height * 0.01,
+                ),
+                SizedBox(
+                  width: size.width * 0.8,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 15.0, horizontal: 10.0),
+                      enabledBorder: border,
+                      focusedBorder: border,
+                      fillColor: Colors.white,
+                      labelText: ' Password',
+                      labelStyle: const TextStyle(color: Colors.white),
+                      suffixIcon: const Padding(
+                        child: FaIcon(
+                          FontAwesomeIcons.eye,
+                          color: Colors.white,
+                          size: 15,
+                        ),
+                        padding: EdgeInsets.only(top: 15, left: 15),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(padding: EdgeInsets.only(bottom: size.height * 0.05)),
+
+                RichText(
+                    textAlign: TextAlign.center,
+                    text: const TextSpan(children: <TextSpan>[
+                      TextSpan(
+                          text: 'Create An Account?',
+                          style: TextStyle(
+                            color: Colors.grey,
+                          )),
+                      TextSpan(
+                          text: ' Sign Up',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                          )),
+                    ])),
+                // IconButton(
+                //   icon: const Icon(
+                //     Icons.logout,
+                //     color: Colors.white,
+                //   ),
+                //   onPressed: () async {
+                //     FirebaseService service = FirebaseService();
+                //     await service.signOutFromGoogle();
+                //   },
+                // )
+              ]),
+        ),
       ),
     );
   }
@@ -117,14 +139,22 @@ class SignInPage extends StatelessWidget {
       // ignore: prefer_const_literals_to_create_immutables
       child: Row(children: [
         // ignore: prefer_const_literals_to_create_immutables
-        const Expanded(child: Divider(color: Colors.grey)),
+        const Expanded(
+            child: Divider(
+          color: Colors.white,
+          thickness: 1,
+        )),
         const Padding(
             padding: EdgeInsets.only(left: 8.0, right: 8.0),
             child: Text(
               "Or",
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(color: Colors.white),
             )),
-        const Expanded(child: Divider(color: Colors.grey)),
+        const Expanded(
+            child: Divider(
+          color: Colors.white,
+          thickness: 1,
+        )),
       ]),
     );
   }
@@ -145,40 +175,42 @@ class _GoogleSignInState extends State<GoogleSignIn> {
     Size size = MediaQuery.of(context).size;
     return !isLoading
         ? SizedBox(
-      width: size.width * 0.8,
-      child: OutlinedButton.icon(
-        icon: const FaIcon(FontAwesomeIcons.google,color: Colors.deepOrangeAccent,),
-        onPressed: () async {
-          setState(() {
-            isLoading = true;
-          });
-          FirebaseService service = FirebaseService();
-          try {
-
-            await service.signInWithGoogle();
-            Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-
-
-          } catch (e) {
-            if (e is FirebaseAuthException) {
-              showMessage(e.message!);
-            }
-          }
-          setState(() {
-            isLoading = false;
-          });
-        },
-        label: const Text(
-          'SignIn With Google',
-          style:
-          TextStyle(color:  Colors.deepOrangeAccent, fontWeight: FontWeight.bold),
-        ),
-        style: ButtonStyle(
-            backgroundColor:
-            MaterialStateProperty.all<Color>(Colors.white),
-            side: MaterialStateProperty.all<BorderSide>(BorderSide.none)),
-      ),
-    )
+            width: size.width * 0.8,
+            child: OutlinedButton.icon(
+              icon: const FaIcon(
+                FontAwesomeIcons.google,
+                color: Colors.deepOrangeAccent,
+              ),
+              onPressed: () async {
+                setState(() {
+                  isLoading = true;
+                });
+                FirebaseService service = FirebaseService();
+                try {
+                  await service.signInWithGoogle();
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/home', (route) => false);
+                } catch (e) {
+                  if (e is FirebaseAuthException) {
+                    showMessage(e.message!);
+                  }
+                }
+                setState(() {
+                  isLoading = false;
+                });
+              },
+              label: const Text(
+                'SignIn With Google',
+                style: TextStyle(
+                    color: Colors.deepOrangeAccent,
+                    fontWeight: FontWeight.bold),
+              ),
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  side: MaterialStateProperty.all<BorderSide>(BorderSide.none)),
+            ),
+          )
         : const CircularProgressIndicator();
   }
 
