@@ -34,8 +34,9 @@ class _DestinationScreenState extends State<DestinationScreen> {
                 height: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.0),
+                  // ignore: prefer_const_literals_to_create_immutables
                   boxShadow: [
-                     const BoxShadow(
+                    const BoxShadow(
                       color: Colors.black26,
                       offset: Offset(0.0, 2.0),
                       blurRadius: 6.0,
@@ -54,7 +55,8 @@ class _DestinationScreenState extends State<DestinationScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 40.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0, vertical: 40.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -146,7 +148,8 @@ class _DestinationScreenState extends State<DestinationScreen> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(100.0, 20.0, 20.0, 20.0),
+                        padding:
+                            const EdgeInsets.fromLTRB(100.0, 20.0, 20.0, 20.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,

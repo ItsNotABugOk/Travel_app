@@ -12,7 +12,7 @@ class HotelCarousel extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(
+              const Text(
                 'Exclusive Hotels',
                 style: TextStyle(
                   fontSize: 22.0,
@@ -21,7 +21,8 @@ class HotelCarousel extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: () => print('See All'),
+                // ignore: avoid_print
+                onTap: () => print('See All Exclusive Hotels'),
                 child: Text(
                   'See All',
                   style: TextStyle(

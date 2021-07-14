@@ -1,0 +1,7 @@
+{
+    "typescript.disableAutomaticTypeAcquisition": true,
+    "css.completion.completePropertyWithSemicolon": false,
+    "php.suggest.basic": false,
+    "php.validate.enable": false,
+    "typescript.enablePromptUseWorkspaceTsdk": true
+}

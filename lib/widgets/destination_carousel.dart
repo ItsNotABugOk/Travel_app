@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app/widgets/add_new_destination.dart';
 import '/models/destination_model.dart';
 import '/screens/destination_screen.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -16,7 +17,7 @@ class DestinationCarousel extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               const Text(
-                'Top Destinations',
+                'Top Trips',
                 style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
@@ -25,9 +26,14 @@ class DestinationCarousel extends StatelessWidget {
               ),
               GestureDetector(
                 // ignore: avoid_print
-                onTap: () => print('See All'),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => NewDestination(),
+                  ),
+                ),
                 child: Text(
-                  'See All',
+                  'Add New Trip',
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontSize: 16.0,
@@ -100,8 +106,10 @@ class DestinationCarousel extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20.0),
+                          // ignore: prefer_const_literals_to_create_immutables
                           boxShadow: [
-                            BoxShadow(
+                            // prefer_const_literals_to_create_immutables
+                            const BoxShadow(
                               color: Colors.black26,
                               offset: Offset(0.0, 2.0),
                               blurRadius: 6.0,
@@ -130,7 +138,7 @@ class DestinationCarousel extends StatelessWidget {
                                 children: <Widget>[
                                   Text(
                                     destination.city,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 24.0,
                                       fontWeight: FontWeight.w600,
@@ -139,15 +147,15 @@ class DestinationCarousel extends StatelessWidget {
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      Icon(
+                                      const Icon(
                                         FontAwesomeIcons.locationArrow,
                                         size: 10.0,
                                         color: Colors.white,
                                       ),
-                                      SizedBox(width: 5.0),
+                                      const SizedBox(width: 5.0),
                                       Text(
                                         destination.country,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
                                         ),
                                       ),
