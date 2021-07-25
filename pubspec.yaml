@@ -51,6 +51,8 @@ dev_dependencies:
   firebase_auth: ^1.4.1
   firebase_core: ^1.2.0
   google_sign_in: ^5.0.4
+  # image Picker
+  image_picker: ^0.8.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
