@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Travel UI',
       debugShowCheckedModeBanner: false,
+      
 
       // initialRoute: '/',
       initialRoute: FirebaseAuth.instance.currentUser == null ? '/' : '/home',

@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,6 +16,24 @@ class AddNewDestination extends StatefulWidget {
 }
 
 class _AddNewDestinationState extends State<AddNewDestination> {
+  final ImagePicker _imagePicker = ImagePicker();
+  XFile? _image;
+
+  _imageFromGallery() async {
+    _image = (await _imagePicker.pickImage(
+        source: ImageSource.gallery, imageQuality: 50))!;
+    setState(() {
+      _image = _image;
+    });
+  }
+
+  Widget image() {
+    return Image.file(
+      File(_image!.path),
+      fit: BoxFit.cover,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -37,10 +58,13 @@ class _AddNewDestinationState extends State<AddNewDestination> {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
-                  child: Image.asset(
-                    'assets/images/mountainMan.jpg',
-                    fit: BoxFit.cover,
-                  ),
+                  // ignore: unnecessary_null_comparison
+                  child: _image == null
+                      ? Image.asset(
+                          'assets/images/mountainMan.jpg',
+                          fit: BoxFit.cover,
+                        )
+                      : image(),
                 ),
               ),
               Padding(
@@ -85,54 +109,69 @@ class _AddNewDestinationState extends State<AddNewDestination> {
               Positioned(
                 bottom: 20,
                 left: 20,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  // ignore: prefer_const_literals_to_create_immutables
-                  children: [
-                    const Text(
-                      'City Name',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        letterSpacing: 1.5,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 3,
-                    ),
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black54),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     // ignore: prefer_const_literals_to_create_immutables
-                    Row(
+                    children: [
+                      const Text(
+                        'City Name',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          letterSpacing: 1.5,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 3,
+                      ),
                       // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        const Icon(
-                          FontAwesomeIcons.locationArrow,
-                          color: Colors.white70,
-                          size: 15,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Text(
-                          'location',
-                          style: TextStyle(
+                      Row(
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          const Icon(
+                            FontAwesomeIcons.locationArrow,
                             color: Colors.white70,
-                            fontSize: 15,
+                            size: 15,
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const Text(
+                            'location',
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-              const Positioned(
+              Positioned(
                 right: 20,
                 bottom: 35,
-                child: Icon(
-                  FontAwesomeIcons.map,
-                  color: Colors.white,
-                  size: 25,
+                child: Container(
+                  padding: const EdgeInsets.all(1),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.black54),
+                  child: IconButton(
+                    onPressed: _imageFromGallery,
+                    icon: const Icon(
+                      FontAwesomeIcons.map,
+                      color: Colors.white,
+                      size: 25,
+                    ),
+                  ),
                 ),
-              )
+              ),
             ],
           ),
           Expanded(
